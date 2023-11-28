@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Form</title>
+</head>
+<body>
+    <h2>Image Form</h2>
+
+    <form action="/process_image" method="post" enctype="multipart/form-data">
+        <label for="image">Choose Image:</label>
+        <input type="file" name="image" id="image" accept="image/*" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if processed_image %}
+        <h3>Processed super Image:</h3>
+        <img src="data:image/jpeg;base64,{{ processed_image }}" alt="Processed Image">
+        <br>
+        <a href="{{ url_for('download_image', processed_image=processed_image) }}" download="processed_image.jpg">Download Processed Image</a>
+    {% endif %}
+</body>
+</html>
