@@ -1,8 +1,12 @@
+// vercel.json
 {
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "./app.py"
-        }
-    ]
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "./app.py"
+    }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }
