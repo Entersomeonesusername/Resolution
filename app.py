@@ -76,14 +76,14 @@ def download_image():
         # Send the file for download
         response = send_file(output, as_attachment=True, download_name='processed_image.jpg')
 
-        # Clean up: remove the temporary file after the response is sent
-        @after_this_request
-        def remove_temp_file(response):
-            try:
-                os.remove(temp_filepath)
-            except Exception as e:
-                print(f"Error removing temp file: {str(e)}")
-            return response
+        # # Clean up: remove the temporary file after the response is sent
+        # @after_this_request
+        # def remove_temp_file(response):
+        #     try:
+        #         os.remove(temp_filepath)
+        #     except Exception as e:
+        #         print(f"Error removing temp file: {str(e)}")
+        #     return response
 
         return response
 
