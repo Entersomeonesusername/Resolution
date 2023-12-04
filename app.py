@@ -64,17 +64,17 @@ def download_image():
         # Create an in-memory file-like object
         output = BytesIO(img_decoded)
 
-        # Save the file temporarily
-        temp_dir = 'temp'
-        os.makedirs(temp_dir, exist_ok=True)
-        temp_filename = 'processed_image.jpg'
-        temp_filepath = os.path.join(temp_dir, temp_filename)
+        # # Save the file temporarily
+        # temp_dir = 'temp'
+        # os.makedirs(temp_dir, exist_ok=True)
+        # temp_filename = 'processed_image.jpg'
+        # temp_filepath = os.path.join(temp_dir, temp_filename)
 
-        with open(temp_filepath, 'wb') as f:
-            f.write(output.getvalue())
+        # with open(temp_filepath, 'wb') as f:
+        #     f.write(output.getvalue())
 
         # Send the file for download
-        response = send_file(temp_filepath, as_attachment=True, download_name='processed_image.jpg')
+        response = send_file(output, as_attachment=True, download_name='processed_image.jpg')
 
         # Clean up: remove the temporary file after the response is sent
         @after_this_request
