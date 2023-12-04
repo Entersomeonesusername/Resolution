@@ -128,8 +128,6 @@ def process_image():
         img = torch.from_numpy(np.transpose(img[:, :, [2, 1, 0]], (2, 0, 1))).float()
         img_LR = img.unsqueeze(0)
         img_LR = img_LR.to(device)
-        processing_started_message = "Image processing started. Please wait..."
-        return render_template('index.html', processing_message=processing_started_message)
 
         with torch.no_grad():
             output = model(img_LR).data.squeeze().float().cpu().clamp_(0, 1).numpy()
@@ -139,13 +137,7 @@ def process_image():
         # Convert the processed image to a base64-encoded string
         _, img_encoded = cv2.imencode('.jpg', output)
         processed_image = base64.b64encode(img_encoded).decode('utf-8')
-        time.sleep(5)
-
-        # Display processing completed message
-        processing_completed_message = "Image processing completed!"
-        return render_template('index.html', processed_image=processed_image, processing_message=processing_completed_message)
-
-        # return render_template('index.html', processed_image=processed_image)
+        return render_template('index.html', processed_image=processed_image)
 
 @app.route('/download_image', methods=['POST'])
 def download_image():
