@@ -20,10 +20,7 @@ timeout = 600  # Increase the timeout value as needed
 # hard_coded_cpu_limit = min(multiprocessing.cpu_count(), 2) 
 # workers = hard_coded_cpu_limit * 2 + 1
 cpu_count = multiprocessing.cpu_count()
-desired_workers = cpu_count * 2 + 1
-
+workers = cpu_count * 2 + 1
 # Ensure the number of workers is within a reasonable range
-workers =desired_workers
-
 # Log the final number of workers
 print(f"Number of Gunicorn workers: {workers}")
