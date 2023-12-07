@@ -128,12 +128,12 @@ def process_image():
         img = torch.from_numpy(np.transpose(img[:, :, [2, 1, 0]], (2, 0, 1))).float()
         img_LR = img.unsqueeze(0)
         img_LR = img_LR.to(device)
-
+        print('processing....')
         with torch.no_grad():
             output = model(img_LR).data.squeeze().float().cpu().clamp_(0, 1).numpy()
         output = np.transpose(output[[2, 1, 0], :, :], (1, 2, 0))
         output = (output * 255.0).round()
-
+        print('...')
         # Convert the processed image to a base64-encoded string
         _, img_encoded = cv2.imencode('.jpg', output)
         processed_image = base64.b64encode(img_encoded).decode('utf-8')
