@@ -12,7 +12,7 @@ import multiprocessing
 bind = ":8000"
 workers = 3  # Adjust the number of workers based on your requirements
 threads = 4
-timeout = 480  # Increase the timeout value as needed
+timeout = 900  # Increase the timeout value as needed
 
 # Optional: You can configure other Gunicorn settings here
 
